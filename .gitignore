@@ -1,0 +1,13 @@
+# IDEA Ignores 
+*.iml
+*.ipr
+*.iws
+*.iml
+.idea/
+local.properties
+
+# Android Ignores
+bin/
+target/
+gen/
+out/
