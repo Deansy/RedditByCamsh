@@ -10,21 +10,26 @@ public class Main extends Activity {
         setContentView(R.layout.main);
        
         RedditSession reddit = new RedditSession();
-        RedditCookie loginCookie;
-        if (Constants.DEV_MODE)
+        RedditCookie loginCookie = null;
+        Boolean needsAuth = false;
+
+        if (needsAuth)
         {
-        	loginCookie = reddit.GetLoginCookie(Constants.DEV_USERNAME, Constants.DEV_PASSWORD);
-        }
-        else 
-        {
-        	// TODO: Get login details in-app
-        	loginCookie = reddit.GetLoginCookie(" ", " ");
+            if (Constants.DEV_MODE)
+            {
+                loginCookie = reddit.GetLoginCookie(Constants.DEV_USERNAME, Constants.DEV_PASSWORD);
+            }
+            else
+            {
+                // TODO: Get login details in-app
+                loginCookie = reddit.GetLoginCookie(" ", " ");
+            }
         }
         if (loginCookie != null)
         {
         	//reddit.GetMe(loginCookie);
-            reddit.GetRoot(loginCookie);
         }
+        reddit.GetRoot();
         
     }
 }
