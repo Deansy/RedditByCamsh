@@ -135,10 +135,4 @@ public class RedditSession {
     }
       
 }
-class RedditCookie {
-	public RedditCookie(String string) {
-		this.string = string;
-	}
-	
-	String string;
-}
+
