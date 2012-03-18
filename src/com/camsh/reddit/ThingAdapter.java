@@ -1,17 +1,18 @@
 package com.camsh.reddit;
 
-/**
- * Created by IntelliJ IDEA.
- * User: cdeansy
- * Date: 17/03/2012
- * Time: 02:16
- * To change this template use File | Settings | File Templates.
- */
-public class ThingAdapter extends ArrayAdapter<RedditThing>{
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import java.util.List;
+
+public class ThingAdapter extends ArrayAdapter<RedditThing> {
 
     List<RedditThing> things;
 
-    public ThingAdapter(Context context, int textViewResourceId, List<Status> things) {
+    public ThingAdapter(Context context, int textViewResourceId, List<RedditThing> things) {
         super(context, textViewResourceId, things);
         this.things = things;
     }
@@ -21,8 +22,7 @@ public class ThingAdapter extends ArrayAdapter<RedditThing>{
         View v = convertView;
         if (v == null) {
             LayoutInflater vi = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            //v = vi.inflate(R.layout.list_item, null);
-            v = vi.inflate(R.layout.)
+            v = vi.inflate(R.layout.list_item, null);
         }
 
         RedditThing o = things.get(position);
