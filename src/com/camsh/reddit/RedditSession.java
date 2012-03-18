@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,9 +77,9 @@ public class RedditSession {
 	        HttpGet get = new HttpGet("http://www.reddit.com/api/me.json");
             if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetMe: " + cookie.string);
 	        get.setHeader("Cookie", cookie.string);
-	
+
 	        HttpResponse response = httpclient.execute(get);
-	
+
 	        HttpEntity entity = response.getEntity();
 	        BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
 	        String returnedJSONString = in.readLine();
@@ -85,40 +87,19 @@ public class RedditSession {
 
             if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetMe: " + returnedJSONString);
 
-	        
-	        // TODO: Do something with the JSON 
+
+	        // TODO: Do something with the JSON
     	}
     	catch (Exception e) {
 			e.printStackTrace();
 		}
     }
-    
-    void GetRoot(RedditCookie cookie) {
+    List<Thing> GetRoot() {
         try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpGet get = new HttpGet("http://www.reddit.com/.json");
-            get.setHeader("Cookie", cookie.string);
-            
-            HttpResponse response = httpClient.execute(get);
-            
-            HttpEntity entity = response.getEntity();
-            BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
-            String returnedJSONString = in.readLine();
-            in.close();
-
-            if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetRoot: " + returnedJSONString);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    JSONObject GetRoot() {
-        try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpGet get = new HttpGet("http://www.reddit.com/.json");
+            final HttpClient httpClient = new DefaultHttpClient();
+            final HttpGet get = new HttpGet("http://www.reddit.com/.json");
 
             HttpResponse response = httpClient.execute(get);
-
             HttpEntity entity = response.getEntity();
             BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
             String returnedJSONString = in.readLine();
@@ -126,13 +107,23 @@ public class RedditSession {
 
             if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetRoot: " + returnedJSONString);
 
-            return new JSONObject(returnedJSONString);
+            JSONObject rootObject = new JSONObject(returnedJSONString);
+            JSONArray thingArray = rootObject.getJSONObject("data").getJSONArray("children");
+
+            List<Thing> thingList = new ArrayList<Thing>();
+
+            for (int i = 0; i < thingArray.length(); i++) {
+                thingList.add(new Thing(thingArray.getJSONObject(i).getJSONObject("data")));
+            }
+
+            return thingList;
         }
         catch (Exception e) {
             e.printStackTrace();
+            assert(true);
         }
         return null;
     }
-      
+
 }
 

@@ -29,7 +29,7 @@ public class Main extends Activity {
         {
         	//reddit.GetMe(loginCookie);
         }
-        reddit.GetRoot();
+        //reddit.GetRoot();
         
     }
 }

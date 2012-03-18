@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -28,22 +29,15 @@ public class ThingAdapter extends ArrayAdapter<Thing> {
         Thing o = things.get(position);
         if (o != null)
         {
-            /*
             TextView nameView = (TextView)v.findViewById(R.id.Name);
-
-            TextView textNameView = (TextView)v.findViewById(R.id.Text);
-            SmartImageView profileImageView = (SmartImageView)v.findViewById(R.id.Image);
-
+            TextView textView = (TextView)v.findViewById(R.id.Text);
+            // Just testing to make sure it is working.
             if (nameView != null) {
-                nameView.setText("@" + o.getUser().getScreenName());
+                nameView.setText(o.title);
             }
-            if (textNameView != null) {
-                textNameView.setText(o.getText());
+            if (textView != null) {
+                textView.setText(o.subreddit);
             }
-            if (profileImageView != null) {
-                profileImageView.setImageUrl(o.getUser().getProfileImageURL().toString());
-            }
-            */
         }
         return v;
     }
