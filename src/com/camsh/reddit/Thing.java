@@ -1,13 +1,15 @@
 package com.camsh.reddit;
 
 import org.json.JSONObject;
-public class RedditThing {
+
+// Thing is the actual name for a link or post.
+public class Thing {
     String subreddit;
     String title;
     Boolean NSFW;
     String URL;
 
-    RedditThing(JSONObject object) {
+    Thing(JSONObject object) {
         try{
             subreddit = object.getString("subreddit");
             title = object.getString("title");

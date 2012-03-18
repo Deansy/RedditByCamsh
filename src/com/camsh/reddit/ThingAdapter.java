@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
-public class ThingAdapter extends ArrayAdapter<RedditThing> {
+public class ThingAdapter extends ArrayAdapter<Thing> {
 
-    List<RedditThing> things;
+    List<Thing> things;
 
-    public ThingAdapter(Context context, int textViewResourceId, List<RedditThing> things) {
+    public ThingAdapter(Context context, int textViewResourceId, List<Thing> things) {
         super(context, textViewResourceId, things);
         this.things = things;
     }
@@ -25,7 +25,7 @@ public class ThingAdapter extends ArrayAdapter<RedditThing> {
             v = vi.inflate(R.layout.list_item, null);
         }
 
-        RedditThing o = things.get(position);
+        Thing o = things.get(position);
         if (o != null)
         {
             /*
