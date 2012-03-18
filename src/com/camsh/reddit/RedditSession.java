@@ -1,12 +1,9 @@
 package com.camsh.reddit;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import android.os.AsyncTask;
 import android.util.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,9 +52,8 @@ public class RedditSession {
                     JSONObject rootObject = new JSONObject(returnedJSONString);
                     JSONObject jsonObject = rootObject.getJSONObject("json");
                     JSONObject dataObject = jsonObject.getJSONObject("data");
-                    
-                    RedditCookie cookie = new RedditCookie(dataObject.getString("cookie")); 
-                    return cookie;
+
+                    return new RedditCookie(dataObject.getString("cookie"));
                 }
                 catch (JSONException e)
                 {
@@ -94,6 +90,7 @@ public class RedditSession {
 			e.printStackTrace();
 		}
     }
+
     List<Thing> GetRoot() {
         try {
             final HttpClient httpClient = new DefaultHttpClient();
@@ -107,8 +104,7 @@ public class RedditSession {
 
             if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetRoot: " + returnedJSONString);
 
-            JSONObject rootObject = new JSONObject(returnedJSONString);
-            JSONArray thingArray = rootObject.getJSONObject("data").getJSONArray("children");
+            JSONArray thingArray = new JSONObject(returnedJSONString).getJSONObject("data").getJSONArray("children");
 
             List<Thing> thingList = new ArrayList<Thing>();
 
@@ -120,7 +116,6 @@ public class RedditSession {
         }
         catch (Exception e) {
             e.printStackTrace();
-            assert(true);
         }
         return null;
     }
