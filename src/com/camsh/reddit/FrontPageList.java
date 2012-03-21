@@ -16,11 +16,11 @@ public class FrontPageList extends ListActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new GetRoot(this).execute(new RedditCookie("NULL"));
+        new getData(this).execute(new RedditCookie("NULL"));
     }
-    private class GetRoot extends AsyncTask<RedditCookie, Void, List<Thing>> {
+    private class getData extends AsyncTask<RedditCookie, Void, List<Thing>> {
         Context context;
-        public GetRoot(Context context) {
+        public getData(Context context) {
             this.context = context;
         }
 
