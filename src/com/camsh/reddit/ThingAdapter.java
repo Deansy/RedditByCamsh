@@ -29,14 +29,18 @@ public class ThingAdapter extends ArrayAdapter<Thing> {
         Thing o = things.get(position);
         if (o != null)
         {
-            TextView nameView = (TextView)v.findViewById(R.id.Name);
-            TextView textView = (TextView)v.findViewById(R.id.Text);
-            // Just testing to make sure it is working.
-            if (nameView != null) {
-                nameView.setText(o.title);
+            TextView titleTextView = (TextView)v.findViewById(R.id.Title);
+            TextView authorTextView = (TextView)v.findViewById(R.id.Author);
+            TextView subbredditTextView = (TextView)v.findViewById(R.id.Subreddit);
+
+            if (titleTextView != null) {
+                titleTextView.setText(o.title);
             }
-            if (textView != null) {
-                textView.setText(o.subreddit);
+            if (authorTextView != null) {
+                authorTextView.setText(o.author);
+            }
+            if (subbredditTextView != null) {
+                subbredditTextView.setText(o.subreddit);
             }
         }
         return v;

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip">
     <TextView
-            android:id="@+id/Name"
-            android:layout_width="fill_parent"
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name:"
             android:paddingTop="10dip"
             />
     <TextView
-            android:id="@+id/Text"
-            android:layout_width="fill_parent"
+            android:id="@+id/Author"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Name"
+            android:layout_below="@id/Title"
             android:text="Text:"
             android:paddingBottom="10dip"
+            />
+    <TextView
+            android:id="@+id/Subreddit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subreddit:"
+            android:layout_alignParentRight="true"
+            android:paddingTop="10dip"
             />
 </RelativeLayout>
