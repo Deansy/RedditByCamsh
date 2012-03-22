@@ -119,6 +119,35 @@ public class RedditSession {
         }
         return null;
     }
+    List<Thing> GetSubreddit(String subreddit) {
+        // TODO: Add error checking to ensure it is a subreddit
+        try {
+            final HttpClient httpClient = new DefaultHttpClient();
+            final HttpGet get = new HttpGet("http://www.reddit.com/r/" + subreddit + "/.json");
+
+            HttpResponse response = httpClient.execute(get);
+            HttpEntity entity = response.getEntity();
+            BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
+            String returnedJSONString = in.readLine();
+            in.close();
+
+            if (Constants.DEV_MODE) Log.d(Constants.TAG, "GetSubreddit: " + returnedJSONString);
+
+            JSONArray thingArray = new JSONObject(returnedJSONString).getJSONObject("data").getJSONArray("children");
+
+            List<Thing> thingList = new ArrayList<Thing>();
+
+            for (int i = 0; i < thingArray.length(); i++) {
+                thingList.add(new Thing(thingArray.getJSONObject(i).getJSONObject("data")));
+            }
+
+            return thingList;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
 
