@@ -1,21 +1,16 @@
 package com.camsh.reddit;
 
-import android.app.Activity;
 import android.app.ListActivity;
+import android.app.ListFragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ListView;
 
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: cdeansy
- * Date: 21/03/2012
- * Time: 23:47
- * To change this template use File | Settings | File Templates.
- */
-public class SubredditList extends ListActivity {
+
+public class SubredditListFragment extends ListFragment {
 
     private ThingAdapter adapter;
     private List<Thing> list;
@@ -26,13 +21,13 @@ public class SubredditList extends ListActivity {
         super.onCreate(savedInstanceState);
 
         // A cookie is not needed for this call so a null cookie is passed.
-        new getSubreddit(this).execute("AlienBlue");
+        new getSubreddit().execute("AlienBlue");
     }
 
     private class getSubreddit extends AsyncTask<String, Void, List<Thing>> {
-        Context context;
-        public getSubreddit(Context context) {
-            this.context = context;
+
+        public getSubreddit() {
+
         }
 
         protected List<Thing> doInBackground(String... subreddit) {
@@ -42,7 +37,7 @@ public class SubredditList extends ListActivity {
 
         protected void onPostExecute(List<Thing> result) {
             list = result;
-            adapter = new ThingAdapter(context, R.layout.list_item, list);
+            adapter = new ThingAdapter(getActivity(), R.layout.list_item, list);
             setListAdapter(adapter);
         }
     }
