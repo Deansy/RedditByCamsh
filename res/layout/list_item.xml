@@ -8,7 +8,7 @@
             android:id="@+id/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name:"
+            android:text="Title"
             android:paddingTop="10dip"
             />
     <TextView
@@ -16,15 +16,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/Title"
-            android:text="Text:"
+            android:text="Author"
             android:paddingBottom="10dip"
             />
     <TextView
             android:id="@+id/Subreddit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subreddit:"
+            android:text="Subreddit"
             android:layout_alignParentRight="true"
-            android:paddingTop="10dip"
+            android:layout_alignBottom="@id/Author"
+            android:paddingBottom="10dip"
             />
 </RelativeLayout>
