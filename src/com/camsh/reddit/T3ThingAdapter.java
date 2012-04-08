@@ -11,11 +11,11 @@ import java.util.List;
 
 import com.camsh.reddit.api.T3Thing;
 
-public class ThingAdapter extends ArrayAdapter<T3Thing> {
+public class T3ThingAdapter extends ArrayAdapter<T3Thing> {
 
     List<T3Thing> things;
 
-    public ThingAdapter(Context context, int textViewResourceId, List<T3Thing> things) {
+    public T3ThingAdapter(Context context, int textViewResourceId, List<T3Thing> things) {
         super(context, textViewResourceId, things);
         this.things = things;
     }
