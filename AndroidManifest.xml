@@ -11,7 +11,7 @@
     <application android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher"
                  android:theme="@android:style/Theme.Holo">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".activites.LoginActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HomeView"
+		<activity android:name=".activites.HomeView"
+                  android:label="@string/app_name">
+        </activity>
+
+        
+		<activity android:name=".activites.Subscriptions"
                   android:label="@string/app_name">
         </activity>
 

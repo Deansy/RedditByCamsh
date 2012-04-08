@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ThingAdapter extends ArrayAdapter<Thing> {
+import com.camsh.reddit.api.T3Thing;
 
-    List<Thing> things;
+public class ThingAdapter extends ArrayAdapter<T3Thing> {
 
-    public ThingAdapter(Context context, int textViewResourceId, List<Thing> things) {
+    List<T3Thing> things;
+
+    public ThingAdapter(Context context, int textViewResourceId, List<T3Thing> things) {
         super(context, textViewResourceId, things);
         this.things = things;
     }
@@ -26,7 +28,7 @@ public class ThingAdapter extends ArrayAdapter<Thing> {
             v = vi.inflate(R.layout.list_item, null);
         }
 
-        Thing o = things.get(position);
+        T3Thing o = things.get(position);
         if (o != null)
         {
             TextView titleTextView = (TextView)v.findViewById(R.id.Title);
